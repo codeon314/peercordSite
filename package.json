@@ -1,0 +1,15 @@
+{
+  "name": "projectsite",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev --host",
+    "build": "astro build",
+    "preview": "astro preview --port 4321 --host --allowed-hosts=projhosting.playit.plus",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "astro": "^6.3.0",
+    "marked": "^18.0.5"
+  }
+}
