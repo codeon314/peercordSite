@@ -1,0 +1,286 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+<Layout title="Donate | Peercord">
+    <main class="donate-page">
+        <div class="page-header">
+            <h1 class="glow-text">Support Peercord</h1>
+            <p class="subtitle">Help keep the project alive and development active.</p>
+            <p class="desc">Peercord is 100% free and open-source. We don't run ads, and we don't sell your data. If you love the platform, consider supporting the development with cryptocurrency.</p>
+        </div>
+
+        <div class="crypto-grid">
+            <!-- Bitcoin Card -->
+            <div class="crypto-card">
+                <div class="crypto-header">
+                    <div class="crypto-icon btc">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11.767 19.089c4.924.868 6.14-6.025 1.216-6.894m-1.216 6.894L5.86 18.047m5.908 1.042-.347 1.97m1.563-8.864c4.924.869 6.14-6.025 1.215-6.893m-1.215 6.893-3.94-.694m5.155-6.2L8.29 4.26m5.908 1.042.348-1.97M7.48 20.364l3.126-17.727"></path></svg>
+                    </div>
+                    <h2>Bitcoin (BTC)</h2>
+                </div>
+                
+                <div class="qr-container">
+                    <!-- PLACEHOLDER: Replace src with your actual BTC QR code image path -->
+                    <img src="/btcQR_Code.png" alt="Bitcoin QR Code" class="qr-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                    <div class="qr-fallback">BTC QR Code Here</div>
+                </div>
+
+                <div class="address-container">
+                    <label>BTC Address</label>
+                    <div class="address-box">
+                        <!-- PLACEHOLDER: Replace with your actual BTC address -->
+                        <code id="btc-address">bc1qvrnvks2v3qcgyp3dhaz69a5jeekwmd8yyv7tkr</code>
+                        <button class="copy-btn" data-target="btc-address">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Monero Card -->
+            <div class="crypto-card">
+                <div class="crypto-header">
+                    <div class="crypto-icon xmr">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20z"></path><path d="M6 12v-3l6 6 6-6v3"></path></svg>
+                    </div>
+                    <h2>Monero (XMR)</h2>
+                </div>
+                
+                <div class="qr-container">
+                    <!-- PLACEHOLDER: Replace src with your actual XMR QR code image path -->
+                    <img src="/xmrQR_Code.png" alt="Monero QR Code" class="qr-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                    <div class="qr-fallback">XMR QR Code Here</div>
+                </div>
+
+                <div class="address-container">
+                    <label>XMR Address</label>
+                    <div class="address-box">
+                        <!-- PLACEHOLDER: Replace with your actual XMR address -->
+                        <code id="xmr-address">46UQYRCTLBCRdHnWNrTUwwX8Me6LuFHPs8djVbNHj7oDKh4JyHU2DVCigafVeF9tgoXpJ3Sommi9eMmvQctAfYbwLvesLXk</code>
+                        <button class="copy-btn" data-target="xmr-address">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</Layout>
+
+<style>
+  .page-header {
+    text-align: center;
+    margin-bottom: 4rem;
+    animation: fadeIn 0.8s ease-out;
+  }
+
+  .page-header h1 {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+  }
+
+  .glow-text {
+    text-shadow: 0 0 20px rgba(237, 66, 69, 0.3);
+  }
+
+  .subtitle {
+    font-size: 1.2rem;
+    color: var(--accent-color);
+    margin-bottom: 1rem;
+  }
+
+  .desc {
+    color: #9CA3AF;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  .crypto-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    animation: slideUp 0.8s ease-out forwards;
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  .crypto-card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+  }
+
+  .crypto-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent-color);
+  }
+
+  .crypto-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .crypto-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+  }
+
+  .crypto-icon.btc { background-color: #F7931A; }
+  .crypto-icon.xmr { background-color: #FF6600; }
+
+  .crypto-header h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: var(--text-color);
+  }
+
+  .qr-container {
+    width: 200px;
+    height: 200px;
+    background-color: #FFFFFF;
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .qr-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .qr-fallback {
+    display: none; /* Hidden by default, shown via onerror */
+    width: 100%;
+    height: 100%;
+    background-color: #1A1A1A;
+    color: #6B7280;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 0.9rem;
+    border-radius: 4px;
+  }
+
+  .address-container {
+    width: 100%;
+  }
+
+  .address-container label {
+    display: block;
+    font-size: 0.85rem;
+    color: #9CA3AF;
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+
+  .address-box {
+    display: flex;
+    background-color: #000000;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .address-box code {
+    flex: 1;
+    padding: 0.8rem 1rem;
+    font-family: monospace;
+    font-size: 0.9rem;
+    color: var(--text-color);
+    overflow-x: auto;
+    white-space: nowrap;
+    scrollbar-width: none; /* Firefox */
+  }
+  
+  .address-box code::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
+  }
+
+  .copy-btn {
+    background-color: var(--card-bg);
+    border: none;
+    border-left: 1px solid var(--border-color);
+    color: var(--accent-color);
+    padding: 0 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .copy-btn:hover {
+    background-color: var(--accent-color);
+    color: #000000;
+  }
+
+  .copy-btn.copied {
+    background-color: #27C93F;
+    color: #000000;
+  }
+
+  @keyframes fadeIn { 
+    from { opacity: 0; } 
+    to { opacity: 1; } 
+  }
+  
+  @keyframes slideUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 768px) {
+    .page-header h1 { font-size: 2.2rem; }
+    .crypto-grid { grid-template-columns: 1fr; }
+  }
+</style>
+
+<script>
+  function setupCopyButtons() {
+    const buttons = document.querySelectorAll('.copy-btn');
+    
+    buttons.forEach(btn => {
+      // Clone and replace to prevent duplicate event listeners from ViewTransitions
+      const newBtn = btn.cloneNode(true);
+      btn.replaceWith(newBtn);
+      
+      newBtn.addEventListener('click', () => {
+        const targetId = newBtn.getAttribute('data-target');
+        const textToCopy = document.getElementById(targetId).innerText;
+        
+        navigator.clipboard.writeText(textToCopy).then(() => {
+          const originalHTML = newBtn.innerHTML;
+          newBtn.classList.add('copied');
+          newBtn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>';
+          
+          setTimeout(() => {
+            newBtn.classList.remove('copied');
+            newBtn.innerHTML = originalHTML;
+          }, 2000);
+        });
+      });
+    });
+  }
+
+  // Run on initial load and after Astro ViewTransitions
+  document.addEventListener('astro:page-load', setupCopyButtons);
+</script>

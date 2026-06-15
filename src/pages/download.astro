@@ -3,52 +3,63 @@ import Layout from '../layouts/Layout.astro';
 ---
 <Layout title="Download | Peercord">
     <main class="download-page">
-        <div class="page-header">
-            <h1 class="glow-text">Get Peercord</h1>
-            <p class="subtitle">Available for major desktop operating systems.</p>
+        
+        <!-- Dynamic Hero Section (Populated by JS) -->
+        <div id="dynamic-hero" class="dynamic-hero">
+            <div class="page-header">
+                <h1 class="glow-text">Get Peercord</h1>
+                <p class="subtitle" id="hero-subtitle">Detecting your operating system...</p>
+            </div>
+            <div id="hero-action-container" class="hero-action-container">
+                <!-- JS will inject the primary button here -->
+            </div>
+        </div>
+
+        <div class="divider">
+            <span>All Platforms</span>
         </div>
 
         <div class="download-grid">
             <!-- Windows Download -->
-            <div class="download-card">
+            <div class="download-card" id="card-windows">
                 <div class="os-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
                 </div>
                 <h2>Windows</h2>
                 <p>Windows 10 / 11 (64-bit)</p>
                 <!-- PLACEHOLDER: Replace href with your actual Windows download link -->
-                <a href="https://storage.peercord.chat/Peercord%20Release/Installers/WIN_x64/PeercordInstaller.exe" class="dl-btn primary">Download for Windows</a>
+                <a href="YOUR_WINDOWS_LINK_HERE" class="dl-btn secondary" data-os="windows">Download for Windows</a>
             </div>
 
             <!-- Linux Download -->
-            <div class="download-card">
+            <div class="download-card" id="card-linux">
                 <div class="os-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a2 2 0 0 0-2 2c0 1.1.9 2 2 2s2-.9 2-2a2 2 0 0 0-2-2Z"></path><path d="M10 22v-6.57"></path><path d="M14 22v-6.57"></path><path d="M12 11v4"></path><path d="M12 15a2.5 2.5 0 0 0 2.5-2.5V7.5a2.5 2.5 0 0 0-5 0v5A2.5 2.5 0 0 0 12 15Z"></path><path d="M6 11c0-1.7 1.3-3 3-3"></path><path d="M18 11c0-1.7-1.3-3-3-3"></path></svg>
                 </div>
                 <h2>Linux</h2>
                 <p>Ubuntu 20.04+ / Debian / Fedora</p>
                 <!-- PLACEHOLDER: Replace href with your actual Linux download link -->
-                <a href="https://storage.peercord.chat/Peercord%20Release/Installers/LINUX_x64/PeercordInstaller" class="dl-btn secondary">Download for Linux</a>
+                <a href="YOUR_LINUX_LINK_HERE" class="dl-btn secondary" data-os="linux">Download for Linux</a>
             </div>
 
             <!-- macOS Download -->
-            <div class="download-card">
+            <div class="download-card" id="card-macos">
                 <div class="os-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20.94c1.5 0 2.75 1.06 4 1.06 3 0 6-8 6-12.22A4.91 4.91 0 0 0 17 5c-2.22 0-4 1.44-5 2-1-.56-2.78-2-5-2a4.9 4.9 0 0 0-5 4.78C2 14 5 22 8 22c1.25 0 2.5-1.06 4-1.06Z"></path><path d="M10 2c1 .5 2 2 2 5h-2c0-3-1-4-2-5Z"></path></svg>
                 </div>
                 <h2>macOS</h2>
                 <p>macOS 11.0+ (Intel & Apple Silicon)</p>
-                <button disabled class="dl-btn disabled">Coming Soon</button>
+                <button disabled class="dl-btn disabled" data-os="macos">Coming Soon</button>
             </div>
 
             <!-- Android Download -->
-            <div class="download-card">
+            <div class="download-card" id="card-android">
                 <div class="os-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
                 </div>
                 <h2>Android</h2>
                 <p>Android 10.0+</p>
-                <button disabled class="dl-btn disabled">Coming Soon</button>
+                <button disabled class="dl-btn disabled" data-os="android">Coming Soon</button>
             </div>
         </div>
 
@@ -65,14 +76,21 @@ import Layout from '../layouts/Layout.astro';
 </Layout>
 
 <style>
-  .page-header {
-    text-align: center;
+  .dynamic-hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     margin-bottom: 4rem;
     animation: fadeIn 0.8s ease-out;
   }
 
+  .page-header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
   .page-header h1 {
-    font-size: 3rem;
+    font-size: 3.5rem;
     margin-bottom: 0.5rem;
     color: var(--text-color);
   }
@@ -84,6 +102,72 @@ import Layout from '../layouts/Layout.astro';
   .subtitle {
     font-size: 1.2rem;
     color: #9CA3AF;
+  }
+
+  .hero-action-container {
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .hero-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    width: 100%;
+    padding: 1.2rem 2rem;
+    border-radius: 12px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-align: center;
+    box-sizing: border-box;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  .hero-btn.primary {
+    background-color: var(--accent-color);
+    color: #000000;
+    box-shadow: 0 0 20px rgba(237, 66, 69, 0.2);
+  }
+
+  .hero-btn.primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(237, 66, 69, 0.5);
+    color: #000000;
+  }
+
+  .hero-btn.disabled {
+    background-color: #1A1A1A;
+    color: #6B7280;
+    border: 1px solid #333333;
+    cursor: not-allowed;
+  }
+
+  .divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #6B7280;
+    font-size: 0.9rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 3rem;
+  }
+
+  .divider::before,
+  .divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .divider span {
+    padding: 0 1rem;
   }
 
   .download-grid {
@@ -106,6 +190,11 @@ import Layout from '../layouts/Layout.astro';
     flex-direction: column;
     align-items: center;
     transition: transform 0.3s ease, border-color 0.3s ease;
+  }
+
+  .download-card.highlight {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 15px rgba(237, 66, 69, 0.1);
   }
 
   .download-card:hover {
@@ -140,17 +229,7 @@ import Layout from '../layouts/Layout.astro';
     box-sizing: border-box;
     transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
     cursor: pointer;
-  }
-
-  .dl-btn.primary {
-    background-color: var(--accent-color);
-    color: #000000;
-  }
-
-  .dl-btn.primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(237, 66, 69, 0.4);
-    color: #000000;
+    text-decoration: none;
   }
 
   .dl-btn.secondary {
@@ -223,7 +302,74 @@ import Layout from '../layouts/Layout.astro';
   }
 
   @media (max-width: 768px) {
-    .page-header h1 { font-size: 2.2rem; }
+    .page-header h1 { font-size: 2.5rem; }
     .download-grid { grid-template-columns: 1fr; }
   }
 </style>
+
+<script>
+  function detectOS() {
+    const ua = window.navigator.userAgent;
+    if (/Windows/i.test(ua)) return 'windows';
+    if (/Mac/i.test(ua)) return 'macos';
+    if (/Linux/i.test(ua) && !/Android/i.test(ua)) return 'linux';
+    if (/Android/i.test(ua)) return 'android';
+    if (/iPhone|iPad|iPod/i.test(ua)) return 'ios';
+    return 'unknown';
+  }
+
+  function setupDynamicDownload() {
+    const os = detectOS();
+    const subtitleEl = document.getElementById('hero-subtitle');
+    const actionContainer = document.getElementById('hero-action-container');
+    
+    // Find the corresponding button from the grid to clone its properties
+    const targetBtn = document.querySelector(`.dl-btn[data-os="${os}"]`);
+    
+    if (targetBtn) {
+      const osNames = {
+        'windows': 'Windows',
+        'linux': 'Linux',
+        'macos': 'macOS',
+        'android': 'Android',
+        'ios': 'iOS'
+      };
+      
+      subtitleEl.textContent = `Download Peercord for ${osNames[os]}`;
+      
+      // Highlight the corresponding card in the grid
+      const targetCard = document.getElementById(`card-${os}`);
+      if (targetCard) targetCard.classList.add('highlight');
+
+      // Create the massive hero button
+      const isComingSoon = targetBtn.classList.contains('disabled');
+      const heroBtn = document.createElement(isComingSoon ? 'button' : 'a');
+      
+      heroBtn.className = `hero-btn ${isComingSoon ? 'disabled' : 'primary'}`;
+      heroBtn.textContent = isComingSoon ? 'Coming Soon' : `Download for ${osNames[os]}`;
+      
+      if (!isComingSoon) {
+        heroBtn.href = targetBtn.getAttribute('href');
+      } else {
+        heroBtn.disabled = true;
+      }
+
+      // Add OS specific icon to the button
+      const iconSvg = targetCard.querySelector('.os-icon svg').cloneNode(true);
+      iconSvg.setAttribute('width', '24');
+      iconSvg.setAttribute('height', '24');
+      heroBtn.prepend(iconSvg);
+
+      actionContainer.innerHTML = '';
+      actionContainer.appendChild(heroBtn);
+
+    } else {
+      // Fallback if OS is unknown or iOS (which we don't have a card for)
+      subtitleEl.textContent = "Select your operating system below.";
+      actionContainer.innerHTML = '';
+    }
+  }
+
+  // Run on initial load and after Astro ViewTransitions
+  document.addEventListener('astro:page-load', setupDynamicDownload);
+</script>
