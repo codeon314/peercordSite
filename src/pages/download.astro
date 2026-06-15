@@ -24,48 +24,44 @@ import Layout from '../layouts/Layout.astro';
         </div>
 
         <div class="divider">
-            <span>All Platforms</span>
+            <span>Select Platform</span>
         </div>
 
         <div class="download-grid">
             <!-- Windows Download -->
-            <div class="download-card" id="card-windows">
+            <div class="download-card" id="card-windows" data-os="windows" data-status="active" data-href="https://storage.peercord.chat/Peercord%20Release/Installers/WIN_x64/PeercordInstaller.exe">
                 <div class="os-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
                 </div>
                 <h2>Windows</h2>
                 <p>Windows 10 / 11 (64-bit)</p>
-                <a href="https://storage.peercord.chat/Peercord%20Release/Installers/WIN_x64/PeercordInstaller.exe" class="dl-btn secondary" data-os="windows">Download for Windows</a>
             </div>
 
             <!-- Linux Download -->
-            <div class="download-card" id="card-linux">
+            <div class="download-card" id="card-linux" data-os="linux" data-status="active" data-href="https://storage.peercord.chat/Peercord%20Release/Installers/LINUX_x64/PeercordInstaller">
                 <div class="os-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a2 2 0 0 0-2 2c0 1.1.9 2 2 2s2-.9 2-2a2 2 0 0 0-2-2Z"></path><path d="M10 22v-6.57"></path><path d="M14 22v-6.57"></path><path d="M12 11v4"></path><path d="M12 15a2.5 2.5 0 0 0 2.5-2.5V7.5a2.5 2.5 0 0 0-5 0v5A2.5 2.5 0 0 0 12 15Z"></path><path d="M6 11c0-1.7 1.3-3 3-3"></path><path d="M18 11c0-1.7-1.3-3-3-3"></path></svg>
                 </div>
                 <h2>Linux</h2>
                 <p>Ubuntu 20.04+ / Debian / Fedora</p>
-                <a href="https://storage.peercord.chat/Peercord%20Release/Installers/LINUX_x64/PeercordInstaller" class="dl-btn secondary" data-os="linux">Download for Linux</a>
             </div>
 
             <!-- macOS Download -->
-            <div class="download-card" id="card-macos">
+            <div class="download-card" id="card-macos" data-os="macos" data-status="coming-soon">
                 <div class="os-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20.94c1.5 0 2.75 1.06 4 1.06 3 0 6-8 6-12.22A4.91 4.91 0 0 0 17 5c-2.22 0-4 1.44-5 2-1-.56-2.78-2-5-2a4.9 4.9 0 0 0-5 4.78C2 14 5 22 8 22c1.25 0 2.5-1.06 4-1.06Z"></path><path d="M10 2c1 .5 2 2 2 5h-2c0-3-1-4-2-5Z"></path></svg>
                 </div>
                 <h2>macOS</h2>
                 <p>macOS 11.0+ (Intel & Apple Silicon)</p>
-                <button disabled class="dl-btn disabled" data-os="macos">Coming Soon</button>
             </div>
 
             <!-- Android Download -->
-            <div class="download-card" id="card-android">
+            <div class="download-card" id="card-android" data-os="android" data-status="coming-soon">
                 <div class="os-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
                 </div>
                 <h2>Android</h2>
                 <p>Android 10.0+</p>
-                <button disabled class="dl-btn disabled" data-os="android">Coming Soon</button>
             </div>
         </div>
 
@@ -214,12 +210,14 @@ import Layout from '../layouts/Layout.astro';
     display: flex;
     flex-direction: column;
     align-items: center;
-    transition: transform 0.3s ease, border-color 0.3s ease;
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
   }
 
   .download-card.highlight {
     border-color: var(--accent-color);
     box-shadow: 0 0 15px rgba(237, 66, 69, 0.1);
+    transform: translateY(-5px);
   }
 
   .download-card:hover {
@@ -240,47 +238,7 @@ import Layout from '../layouts/Layout.astro';
   .download-card p {
     color: #9CA3AF;
     font-size: 0.9rem;
-    margin-bottom: 2rem;
-    flex-grow: 1;
-  }
-
-  .dl-btn {
-    display: inline-block;
-    width: 100%;
-    padding: 0.8rem 1rem;
-    border-radius: 8px;
-    font-weight: bold;
-    text-align: center;
-    box-sizing: border-box;
-    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
-    cursor: pointer;
-    text-decoration: none;
-    border: none;
-    font-family: inherit;
-  }
-
-  .dl-btn.secondary {
-    background-color: transparent;
-    color: var(--text-color);
-    border: 1px solid var(--border-color);
-  }
-
-  .dl-btn.secondary:hover {
-    background-color: var(--card-bg);
-    border-color: var(--accent-color);
-    transform: translateY(-2px);
-  }
-
-  .dl-btn.disabled {
-    background-color: #1A1A1A;
-    color: #6B7280;
-    border: 1px solid #333333;
-    cursor: not-allowed;
-  }
-
-  .dl-btn.disabled:hover {
-    transform: none;
-    box-shadow: none;
+    margin: 0;
   }
 
   .sys-req {
@@ -335,6 +293,14 @@ import Layout from '../layouts/Layout.astro';
 </style>
 
 <script>
+  const osNames = {
+    'windows': 'Windows',
+    'linux': 'Linux',
+    'macos': 'macOS',
+    'android': 'Android',
+    'ios': 'iOS'
+  };
+
   function detectOS() {
     const ua = window.navigator.userAgent;
     if (/Windows/i.test(ua)) return 'windows';
@@ -345,59 +311,72 @@ import Layout from '../layouts/Layout.astro';
     return 'unknown';
   }
 
-  function setupDynamicDownload() {
-    const os = detectOS();
-    const subtitleEl = document.getElementById('hero-subtitle');
+  function updateHeroButton(card) {
+    const os = card.getAttribute('data-os');
+    const status = card.getAttribute('data-status');
+    const href = card.getAttribute('data-href');
     
+    const subtitleEl = document.getElementById('hero-subtitle');
     const btnActive = document.getElementById('hero-btn-active');
     const btnDisabled = document.getElementById('hero-btn-disabled');
     const iconActive = document.getElementById('hero-btn-icon');
     const textActive = document.getElementById('hero-btn-text');
     const iconDisabled = document.getElementById('hero-btn-disabled-icon');
     const textDisabled = document.getElementById('hero-btn-disabled-text');
-    
-    // Hide both initially
+
+    // Update subtitle
+    subtitleEl.textContent = `Download Peercord for ${osNames[os] || os}`;
+
+    // Update highlight state on cards
+    document.querySelectorAll('.download-card').forEach(c => c.classList.remove('highlight'));
+    card.classList.add('highlight');
+
+    // Hide both buttons initially
     btnActive.classList.add('hidden');
     btnDisabled.classList.add('hidden');
-    
-    // Find the corresponding button from the grid to clone its properties
-    const targetBtn = document.querySelector(`.dl-btn[data-os="${os}"]`);
-    
-    if (targetBtn) {
-      const osNames = {
-        'windows': 'Windows',
-        'linux': 'Linux',
-        'macos': 'macOS',
-        'android': 'Android',
-        'ios': 'iOS'
-      };
-      
-      subtitleEl.textContent = `Download Peercord for ${osNames[os]}`;
-      
-      // Highlight the corresponding card in the grid
-      const targetCard = document.getElementById(`card-${os}`);
-      if (targetCard) targetCard.classList.add('highlight');
 
-      const isComingSoon = targetBtn.classList.contains('disabled');
-      const iconSvg = targetCard.querySelector('.os-icon svg').cloneNode(true);
-      
-      if (!isComingSoon) {
-        btnActive.href = targetBtn.getAttribute('href');
-        iconActive.innerHTML = '';
-        iconActive.appendChild(iconSvg);
-        textActive.textContent = `Download for ${osNames[os]}`;
-        btnActive.classList.remove('hidden');
-      } else {
-        iconDisabled.innerHTML = '';
-        iconDisabled.appendChild(iconSvg);
-        textDisabled.textContent = 'Coming Soon';
-        btnDisabled.classList.remove('hidden');
-      }
+    // Clone the SVG icon from the card
+    const iconSvg = card.querySelector('.os-icon svg').cloneNode(true);
+    iconSvg.setAttribute('width', '24');
+    iconSvg.setAttribute('height', '24');
 
+    if (status === 'active') {
+      btnActive.href = href;
+      iconActive.innerHTML = '';
+      iconActive.appendChild(iconSvg);
+      textActive.textContent = `Download for ${osNames[os] || os}`;
+      btnActive.classList.remove('hidden');
     } else {
-      // Fallback if OS is unknown or iOS (which we don't have a card for)
-      subtitleEl.textContent = "Select your operating system below.";
+      iconDisabled.innerHTML = '';
+      iconDisabled.appendChild(iconSvg);
+      textDisabled.textContent = 'Coming Soon';
+      btnDisabled.classList.remove('hidden');
     }
+  }
+
+  function setupDynamicDownload() {
+    const os = detectOS();
+    let targetCard = document.getElementById(`card-${os}`);
+    
+    // Fallback to Windows if OS is unknown or iOS (since we don't have an iOS card)
+    if (!targetCard) {
+      targetCard = document.getElementById('card-windows');
+    }
+
+    if (targetCard) {
+      updateHeroButton(targetCard);
+    }
+
+    // Attach click listeners to all cards
+    document.querySelectorAll('.download-card').forEach(card => {
+      // Clone and replace to prevent duplicate event listeners from ViewTransitions
+      const newCard = card.cloneNode(true);
+      card.replaceWith(newCard);
+      
+      newCard.addEventListener('click', () => {
+        updateHeroButton(newCard);
+      });
+    });
   }
 
   // Run on initial load and after Astro ViewTransitions
