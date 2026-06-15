@@ -4,14 +4,22 @@ import Layout from '../layouts/Layout.astro';
 <Layout title="Download | Peercord">
     <main class="download-page">
         
-        <!-- Dynamic Hero Section (Populated by JS) -->
+        <!-- Dynamic Hero Section -->
         <div id="dynamic-hero" class="dynamic-hero">
             <div class="page-header">
                 <h1 class="glow-text">Get Peercord</h1>
                 <p class="subtitle" id="hero-subtitle">Detecting your operating system...</p>
             </div>
             <div id="hero-action-container" class="hero-action-container">
-                <!-- JS will inject the primary button here -->
+                <!-- Pre-rendered buttons so Astro's scoped CSS applies correctly -->
+                <a id="hero-btn-active" href="#" class="hero-btn primary hidden">
+                    <div id="hero-btn-icon" class="btn-icon-wrapper"></div>
+                    <span id="hero-btn-text">Download</span>
+                </a>
+                <button id="hero-btn-disabled" class="hero-btn disabled hidden" disabled>
+                    <div id="hero-btn-disabled-icon" class="btn-icon-wrapper"></div>
+                    <span id="hero-btn-disabled-text">Coming Soon</span>
+                </button>
             </div>
         </div>
 
@@ -124,33 +132,44 @@ import Layout from '../layouts/Layout.astro';
     transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
     cursor: pointer;
     text-decoration: none;
-    border: none; /* Fixes default <button> styling */
+    border: none;
     outline: none;
-    font-family: inherit; /* Ensures it matches the site font */
+    font-family: inherit;
     line-height: 1;
-  }
-
-  .hero-btn svg {
-    flex-shrink: 0; /* Prevents the icon from squishing */
   }
 
   .hero-btn.primary {
     background-color: var(--accent-color);
-    color: #000000;
+    color: #000000 !important;
     box-shadow: 0 0 20px rgba(237, 66, 69, 0.2);
   }
 
   .hero-btn.primary:hover {
     transform: translateY(-3px);
     box-shadow: 0 8px 25px rgba(237, 66, 69, 0.5);
-    color: #000000;
+    color: #000000 !important;
   }
 
   .hero-btn.disabled {
     background-color: #1A1A1A;
-    color: #6B7280;
+    color: #6B7280 !important;
     border: 1px solid #333333;
     cursor: not-allowed;
+  }
+
+  .hidden {
+    display: none !important;
+  }
+
+  .btn-icon-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .btn-icon-wrapper svg {
+    width: 24px;
+    height: 24px;
   }
 
   .divider {
@@ -329,7 +348,17 @@ import Layout from '../layouts/Layout.astro';
   function setupDynamicDownload() {
     const os = detectOS();
     const subtitleEl = document.getElementById('hero-subtitle');
-    const actionContainer = document.getElementById('hero-action-container');
+    
+    const btnActive = document.getElementById('hero-btn-active');
+    const btnDisabled = document.getElementById('hero-btn-disabled');
+    const iconActive = document.getElementById('hero-btn-icon');
+    const textActive = document.getElementById('hero-btn-text');
+    const iconDisabled = document.getElementById('hero-btn-disabled-icon');
+    const textDisabled = document.getElementById('hero-btn-disabled-text');
+    
+    // Hide both initially
+    btnActive.classList.add('hidden');
+    btnDisabled.classList.add('hidden');
     
     // Find the corresponding button from the grid to clone its properties
     const targetBtn = document.querySelector(`.dl-btn[data-os="${os}"]`);
@@ -349,37 +378,25 @@ import Layout from '../layouts/Layout.astro';
       const targetCard = document.getElementById(`card-${os}`);
       if (targetCard) targetCard.classList.add('highlight');
 
-      // Create the massive hero button
       const isComingSoon = targetBtn.classList.contains('disabled');
-      const heroBtn = document.createElement(isComingSoon ? 'button' : 'a');
-      
-      heroBtn.className = `hero-btn ${isComingSoon ? 'disabled' : 'primary'}`;
+      const iconSvg = targetCard.querySelector('.os-icon svg').cloneNode(true);
       
       if (!isComingSoon) {
-        heroBtn.href = targetBtn.getAttribute('href');
+        btnActive.href = targetBtn.getAttribute('href');
+        iconActive.innerHTML = '';
+        iconActive.appendChild(iconSvg);
+        textActive.textContent = `Download for ${osNames[os]}`;
+        btnActive.classList.remove('hidden');
       } else {
-        heroBtn.disabled = true;
+        iconDisabled.innerHTML = '';
+        iconDisabled.appendChild(iconSvg);
+        textDisabled.textContent = 'Coming Soon';
+        btnDisabled.classList.remove('hidden');
       }
-
-      // Add OS specific icon to the button
-      const iconSvg = targetCard.querySelector('.os-icon svg').cloneNode(true);
-      iconSvg.setAttribute('width', '24');
-      iconSvg.setAttribute('height', '24');
-      
-      // Wrap text in a span for perfect flexbox alignment
-      const textSpan = document.createElement('span');
-      textSpan.textContent = isComingSoon ? 'Coming Soon' : `Download for ${osNames[os]}`;
-      
-      heroBtn.appendChild(iconSvg);
-      heroBtn.appendChild(textSpan);
-
-      actionContainer.innerHTML = '';
-      actionContainer.appendChild(heroBtn);
 
     } else {
       // Fallback if OS is unknown or iOS (which we don't have a card for)
       subtitleEl.textContent = "Select your operating system below.";
-      actionContainer.innerHTML = '';
     }
   }
 
