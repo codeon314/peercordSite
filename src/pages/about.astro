@@ -39,13 +39,21 @@ import Layout from '../layouts/Layout.astro';
             </div>
         </section>
 
-        <section class="collaboration-card">
-            <div class="collab-content">
-                <h2>Collaborating with Church of Malware</h2>
+        <section class="links-grid">
+            <div class="link-card">
+                <h2>My Project Site</h2>
                 <p>
-                    I am proud to collaborate with the <strong>Church of Malware</strong>, a nonprofit cybersecurity organization dedicated to advancing security research, education, and threat intelligence. Together, we work to dissect emerging threats, develop defensive tooling, and foster a community committed to securing the digital frontier and protecting users worldwide.
+                    Check out my personal portfolio to see other projects I'm working on, read my research, and explore my open-source tools.
                 </p>
-                <a href="https://churchofmalware.org" target="_blank" rel="noopener noreferrer" class="collab-btn">Visit Church of Malware &rarr;</a>
+                <a href="https://mastercodeon.dev" target="_blank" rel="noopener noreferrer" class="action-btn">Visit mastercodeon.dev &rarr;</a>
+            </div>
+
+            <div class="link-card">
+                <h2>Church of Malware</h2>
+                <p>
+                    I am proud to collaborate with the <strong>Church of Malware</strong>, a nonprofit cybersecurity organization dedicated to advancing security research, education, and threat intelligence.
+                </p>
+                <a href="https://churchofmalware.org" target="_blank" rel="noopener noreferrer" class="action-btn">Visit Church of Malware &rarr;</a>
             </div>
         </section>
     </main>
@@ -56,6 +64,7 @@ import Layout from '../layouts/Layout.astro';
     margin-bottom: 2rem;
     border-bottom: 1px solid var(--border-color);
     padding-bottom: 0.5rem;
+    color: var(--text-color);
   }
 
   .bio-card {
@@ -124,54 +133,62 @@ import Layout from '../layouts/Layout.astro';
     line-height: 1.5;
   }
 
-  .collaboration-card {
+  .links-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .link-card {
     background: linear-gradient(145deg, var(--card-bg) 0%, #000000 100%);
     padding: 2.5rem;
     border-radius: 8px;
     border: 1px solid var(--accent-color);
-    box-shadow: 0 0 20px rgba(0, 229, 255, 0.1);
+    box-shadow: 0 0 20px rgba(237, 66, 69, 0.1);
     text-align: center;
-    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
   }
 
-  .collaboration-card h2 {
+  .link-card h2 {
     margin-top: 0;
     color: var(--text-color);
     margin-bottom: 1rem;
   }
 
-  .collaboration-card p {
+  .link-card p {
     color: #D1D5DB;
     line-height: 1.6;
     margin-bottom: 2rem;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
   }
 
-  .collab-btn {
+  .action-btn {
     display: inline-block;
     background-color: var(--accent-color);
-    color: #000000;
+    color: #000000 !important;
     padding: 0.8rem 1.5rem;
     border-radius: 6px;
     font-weight: bold;
     text-decoration: none;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
+    margin-top: auto;
   }
 
-  .collab-btn:hover {
+  .action-btn:hover {
     transform: scale(1.05);
-    box-shadow: 0 0 15px rgba(0, 229, 255, 0.6);
-    color: #000000;
+    box-shadow: 0 0 15px rgba(237, 66, 69, 0.4);
+    color: #000000 !important;
     text-shadow: none;
   }
 
   @media (max-width: 768px) {
-    .bio-card, .collaboration-card {
+    .bio-card, .link-card {
       padding: 1.5rem;
     }
-    .skills-grid {
+    .skills-grid, .links-grid {
       grid-template-columns: 1fr;
     }
   }
