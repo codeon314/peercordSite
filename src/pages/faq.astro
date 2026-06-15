@@ -19,28 +19,49 @@ import Layout from '../layouts/Layout.astro';
             <details class="faq-item" name="faq-accordion">
                 <summary>How does the P2P network work?</summary>
                 <div class="faq-content">
-                    <p>Peercord utilizes a Distributed Hash Table (DHT) to find other users and WebRTC to establish direct, encrypted connections between clients. When you send a message, it goes directly from your computer to your friend's computer—no middleman involved.</p>
+                    <p>Peercord utilizes the Hyperswarm Distributed Hash Table (DHT) to find other users and WebRTC to establish direct, encrypted connections between clients. When you send a message, it goes directly from your computer to your friend's computer—no middleman involved.</p>
                 </div>
             </details>
 
             <details class="faq-item" name="faq-accordion">
                 <summary>Are my messages secure?</summary>
                 <div class="faq-content">
-                    <p>Absolutely. Every direct message, group chat, and voice call is End-to-End Encrypted (E2EE) using industry-standard cryptographic protocols. Only the intended recipients can decrypt and read your messages.</p>
+                    <p>Absolutely. Every direct message, group chat, and file transfer is End-to-End Encrypted (E2EE) using the xChaCha20-Poly1305 cryptographic protocol. Only the intended recipients can decrypt and read your messages.</p>
                 </div>
             </details>
 
             <details class="faq-item" name="faq-accordion">
-                <summary>Can I host my own server/community?</summary>
+                <summary>How do I recover my account?</summary>
                 <div class="faq-content">
-                    <p>Yes! In Peercord, "Servers" are actually decentralized swarms. When you create a community, your client acts as the initial host. As more members join, the hosting load is distributed among active participants automatically.</p>
+                    <p>Your identity is tied to a 64-character cryptographic seed generated when you first sign up. You can find this seed in your Account Settings. <strong>Do not lose this seed!</strong> If you switch devices, you simply paste this seed into the login screen to instantly restore your account, contacts, and hub memberships.</p>
+                </div>
+            </details>
+
+            <details class="faq-item" name="faq-accordion">
+                <summary>Where are my messages and files stored?</summary>
+                <div class="faq-content">
+                    <p>Because there are no central servers, all your data is stored locally on your own machine. On Windows, this is typically located in <code>%APPDATA%\Peercord\p2p-storage</code>, and on Linux/macOS in <code>~/.config/Peercord/p2p-storage</code>. You can manage and prune large files directly from the Storage Management tab in the app settings.</p>
+                </div>
+            </details>
+
+            <details class="faq-item" name="faq-accordion">
+                <summary>How do updates work?</summary>
+                <div class="faq-content">
+                    <p>Peercord uses the Pear Runtime for Over-The-Air (OTA) updates. When a new version is released, your app downloads the update in the background directly from other peers seeding the new version. Once downloaded, the app will prompt you to restart, seamlessly swapping the files without interrupting your workflow.</p>
+                </div>
+            </details>
+
+            <details class="faq-item" name="faq-accordion">
+                <summary>Is there a file size limit?</summary>
+                <div class="faq-content">
+                    <p>No! Because files are transferred directly between peers using Hypercore streams, there are no arbitrary server limits. You can send files as large as your hard drive and network connection can handle.</p>
                 </div>
             </details>
 
             <details class="faq-item" name="faq-accordion">
                 <summary>Do I need to port forward my router?</summary>
                 <div class="faq-content">
-                    <p>In most cases, no. Peercord uses STUN/TURN servers and UPnP to automatically punch through NATs and firewalls. However, if you are on a highly restrictive corporate or university network, you may experience connectivity issues.</p>
+                    <p>In most cases, no. Peercord uses STUN servers and UPnP to automatically punch through NATs and firewalls. However, if you are on a highly restrictive corporate or university network, you may experience connectivity issues.</p>
                 </div>
             </details>
         </div>
@@ -139,6 +160,15 @@ import Layout from '../layouts/Layout.astro';
 
   .faq-content p {
     margin: 0;
+  }
+
+  .faq-content code {
+    background-color: #1A1A1A;
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+    font-family: monospace;
+    font-size: 0.9em;
+    color: var(--accent-color);
   }
 
   @keyframes fadeIn { 
