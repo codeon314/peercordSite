@@ -1,0 +1,161 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+<Layout title="FAQ | Peercord">
+    <main class="faq-page">
+        <div class="page-header">
+            <h1 class="glow-text">Frequently Asked Questions</h1>
+            <p class="subtitle">Everything you need to know about how Peercord works.</p>
+        </div>
+
+        <div class="faq-container">
+            <details class="faq-item" name="faq-accordion">
+                <summary>Is Peercord really free?</summary>
+                <div class="faq-content">
+                    <p>Yes! Peercord is 100% free and open-source. Because it uses a peer-to-peer architecture, there are no central servers to maintain, which means we don't have to charge you or sell your data to keep the lights on.</p>
+                </div>
+            </details>
+
+            <details class="faq-item" name="faq-accordion">
+                <summary>How does the P2P network work?</summary>
+                <div class="faq-content">
+                    <p>Peercord utilizes a Distributed Hash Table (DHT) to find other users and WebRTC to establish direct, encrypted connections between clients. When you send a message, it goes directly from your computer to your friend's computer—no middleman involved.</p>
+                </div>
+            </details>
+
+            <details class="faq-item" name="faq-accordion">
+                <summary>Are my messages secure?</summary>
+                <div class="faq-content">
+                    <p>Absolutely. Every direct message, group chat, and voice call is End-to-End Encrypted (E2EE) using industry-standard cryptographic protocols. Only the intended recipients can decrypt and read your messages.</p>
+                </div>
+            </details>
+
+            <details class="faq-item" name="faq-accordion">
+                <summary>Can I host my own server/community?</summary>
+                <div class="faq-content">
+                    <p>Yes! In Peercord, "Servers" are actually decentralized swarms. When you create a community, your client acts as the initial host. As more members join, the hosting load is distributed among active participants automatically.</p>
+                </div>
+            </details>
+
+            <details class="faq-item" name="faq-accordion">
+                <summary>Do I need to port forward my router?</summary>
+                <div class="faq-content">
+                    <p>In most cases, no. Peercord uses STUN/TURN servers and UPnP to automatically punch through NATs and firewalls. However, if you are on a highly restrictive corporate or university network, you may experience connectivity issues.</p>
+                </div>
+            </details>
+        </div>
+    </main>
+</Layout>
+
+<style>
+  .page-header {
+    text-align: center;
+    margin-bottom: 4rem;
+    animation: fadeIn 0.8s ease-out;
+  }
+
+  .page-header h1 {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+  }
+
+  .glow-text {
+    text-shadow: 0 0 20px rgba(237, 66, 69, 0.3);
+  }
+
+  .subtitle {
+    font-size: 1.2rem;
+    color: #9CA3AF;
+  }
+
+  .faq-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    animation: slideUp 0.8s ease-out forwards;
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  .faq-item {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: border-color 0.3s ease;
+  }
+
+  .faq-item:hover {
+    border-color: #333333;
+  }
+
+  /* The summary tag acts as the clickable header */
+  .faq-item summary {
+    padding: 1.5rem;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: var(--text-color);
+    cursor: pointer;
+    list-style: none; /* Removes default arrow in most browsers */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    user-select: none;
+  }
+
+  /* Custom Arrow for the summary */
+  .faq-item summary::after {
+    content: "+";
+    color: var(--accent-color);
+    font-size: 1.5rem;
+    font-weight: normal;
+    line-height: 1;
+    transition: transform 0.3s ease;
+  }
+
+  /* When details is open, change the arrow */
+  .faq-item[open] summary::after {
+    content: "−";
+    transform: rotate(180deg);
+  }
+
+  /* Hide the default webkit arrow */
+  .faq-item summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-item[open] {
+    border-color: var(--accent-color);
+  }
+
+  .faq-content {
+    padding: 0 1.5rem 1.5rem 1.5rem;
+    color: #D1D5DB;
+    line-height: 1.6;
+    border-top: 1px solid transparent;
+    animation: expand 0.3s ease-out;
+  }
+
+  .faq-content p {
+    margin: 0;
+  }
+
+  @keyframes fadeIn { 
+    from { opacity: 0; } 
+    to { opacity: 1; } 
+  }
+  
+  @keyframes slideUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes expand {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 768px) {
+    .page-header h1 { font-size: 2.2rem; }
+  }
+</style>

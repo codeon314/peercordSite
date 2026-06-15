@@ -1,0 +1,134 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+<Layout title="Features | Peercord">
+    <main class="features-page">
+        <div class="page-header">
+            <h1 class="glow-text">Platform Features</h1>
+            <p class="subtitle">Everything you need to build and manage your decentralized communities.</p>
+        </div>
+
+        <div class="features-grid">
+            <!-- Placeholder Feature 1 -->
+            <div class="feature-card">
+                <div class="icon-wrapper">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                </div>
+                <h2>Military-Grade Encryption</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+            </div>
+
+            <!-- Placeholder Feature 2 -->
+            <div class="feature-card">
+                <div class="icon-wrapper">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                </div>
+                <h2>Unlimited Server Members</h2>
+                <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.</p>
+            </div>
+
+            <!-- Placeholder Feature 3 -->
+            <div class="feature-card">
+                <div class="icon-wrapper">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                </div>
+                <h2>Lightning Fast WebRTC</h2>
+                <p>Sunt in culpa qui officia deserunt mollit anim id est laborum. Curabitur pretium tincidunt lacus. Nulla gravida orci a odio.</p>
+            </div>
+
+            <!-- Placeholder Feature 4 -->
+            <div class="feature-card">
+                <div class="icon-wrapper">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+                </div>
+                <h2>Screen Sharing & Streaming</h2>
+                <p>Nullam varius, turpis et commodo pharetra, est eros bibendum elit, nec luctus magna felis sollicitudin mauris. Integer in mauris eu nibh euismod gravida.</p>
+            </div>
+        </div>
+    </main>
+</Layout>
+
+<style>
+  .page-header {
+    text-align: center;
+    margin-bottom: 4rem;
+    animation: fadeIn 0.8s ease-out;
+  }
+
+  .page-header h1 {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+  }
+
+  .glow-text {
+    text-shadow: 0 0 20px rgba(237, 66, 69, 0.3);
+  }
+
+  .subtitle {
+    font-size: 1.2rem;
+    color: #9CA3AF;
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    animation: slideUp 0.8s ease-out forwards;
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  .feature-card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 2rem;
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .feature-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent-color);
+    box-shadow: 0 10px 30px rgba(237, 66, 69, 0.1);
+  }
+
+  .icon-wrapper {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    background-color: rgba(237, 66, 69, 0.1);
+    color: var(--accent-color);
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+  }
+
+  .feature-card h2 {
+    margin-top: 0;
+    font-size: 1.4rem;
+    color: var(--text-color);
+    margin-bottom: 1rem;
+  }
+
+  .feature-card p {
+    color: #D1D5DB;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  @keyframes fadeIn { 
+    from { opacity: 0; } 
+    to { opacity: 1; } 
+  }
+  
+  @keyframes slideUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 768px) {
+    .page-header h1 { font-size: 2.2rem; }
+    .features-grid { grid-template-columns: 1fr; }
+  }
+</style>
