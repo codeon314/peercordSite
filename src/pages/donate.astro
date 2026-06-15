@@ -99,7 +99,8 @@ import Layout from '../layouts/Layout.astro';
 
   .crypto-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    /* min(100%, 300px) prevents grid blowout on extremely small screens */
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
     gap: 2rem;
     animation: slideUp 0.8s ease-out forwards;
     opacity: 0;
@@ -115,6 +116,9 @@ import Layout from '../layouts/Layout.astro';
     flex-direction: column;
     align-items: center;
     transition: transform 0.3s ease, border-color 0.3s ease;
+    min-width: 0; /* CRITICAL: Prevents grid item from expanding beyond column width */
+    width: 100%;
+    box-sizing: border-box;
   }
 
   .crypto-card:hover {
@@ -182,6 +186,8 @@ import Layout from '../layouts/Layout.astro';
 
   .address-container {
     width: 100%;
+    min-width: 0; /* CRITICAL: Prevents flex item from expanding */
+    box-sizing: border-box;
   }
 
   .address-container label {
@@ -199,11 +205,15 @@ import Layout from '../layouts/Layout.astro';
     border: 1px solid var(--border-color);
     border-radius: 8px;
     overflow: hidden;
+    width: 100%;
+    min-width: 0; /* CRITICAL: Prevents flex item from expanding */
+    box-sizing: border-box;
   }
 
   .address-box code {
     flex: 1;
-    min-width: 0; /* Prevents flexbox blowout from long addresses */
+    min-width: 0; /* CRITICAL: Prevents flexbox blowout from long addresses */
+    box-sizing: border-box;
     padding: 0.8rem 1rem;
     font-family: monospace;
     font-size: 0.9rem;
@@ -228,6 +238,7 @@ import Layout from '../layouts/Layout.astro';
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-shrink: 0; /* CRITICAL: Prevents button from squishing */
   }
 
   .copy-btn:hover {
@@ -250,7 +261,10 @@ import Layout from '../layouts/Layout.astro';
   }
 
   @media (max-width: 768px) {
-    .page-header h1 { font-size: 2.2rem; }
+    .page-header h1 { 
+      font-size: 2rem; 
+      word-wrap: break-word; 
+    }
     .crypto-grid { grid-template-columns: 1fr; }
     .crypto-card { padding: 1.5rem 1rem; }
   }
