@@ -4,6 +4,7 @@ import Layout from '../layouts/Layout.astro';
 <Layout title="Peercord | P2P Social Platform">
     <main>
         <section class="hero">
+            <img src="/peercord-logo.png" alt="Peercord Logo" class="hero-logo" />
             <div class="hero-badge">
                 <span class="pulse-dot"></span> P2P Network Active
             </div>
@@ -79,6 +80,14 @@ import Layout from '../layouts/Layout.astro';
     flex-direction: column;
     align-items: center;
   }
+
+  .hero-logo {
+    width: 140px;
+    height: auto;
+    margin-bottom: 2rem;
+    filter: drop-shadow(0 0 15px rgba(237, 66, 69, 0.4));
+    animation: float 6s ease-in-out infinite;
+  }
   
   .hero-badge {
     display: inline-flex;
@@ -111,7 +120,7 @@ import Layout from '../layouts/Layout.astro';
   }
 
   .glow-text {
-    text-shadow: 0 0 20px rgba(0, 229, 255, 0.3);
+    text-shadow: 0 0 20px rgba(237, 66, 69, 0.3);
   }
 
   .subtitle {
@@ -150,7 +159,7 @@ import Layout from '../layouts/Layout.astro';
 
   .cta-button.primary:hover { 
     transform: translateY(-3px); 
-    box-shadow: 0 5px 15px rgba(0, 229, 255, 0.4); 
+    box-shadow: 0 5px 15px rgba(237, 66, 69, 0.4); 
     color: #000000; 
   }
 
@@ -290,18 +299,25 @@ import Layout from '../layouts/Layout.astro';
   }
 
   @keyframes pulse {
-    0% { box-shadow: 0 0 0 0 rgba(0, 229, 255, 0.7); }
-    70% { box-shadow: 0 0 0 6px rgba(0, 229, 255, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(0, 229, 255, 0); }
+    0% { box-shadow: 0 0 0 0 rgba(237, 66, 69, 0.7); }
+    70% { box-shadow: 0 0 0 6px rgba(237, 66, 69, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(237, 66, 69, 0); }
   }
 
   @keyframes blinker {
     50% { opacity: 0; }
   }
 
+  @keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+  }
+
   /* --- Mobile Adjustments --- */
   @media (max-width: 768px) {
     .hero { padding: 2rem 0; } 
+    .hero-logo { width: 100px; }
     .hero h1 { font-size: 2.5rem; } 
     .subtitle { font-size: 1rem; }
     .hero-desc { font-size: 1rem; }

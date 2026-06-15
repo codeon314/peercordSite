@@ -3,7 +3,7 @@
   --bg-color: #000000;
   --card-bg: #0A0A0A;
   --text-color: #EDEDED;
-  --accent-color: #00E5FF;
+  --accent-color: #ED4245; /* Updated to Peercord Red */
   --border-color: #1A1A1A;
 }
 
@@ -32,7 +32,7 @@ a {
 
 a:hover { 
   color: #FFFFFF; 
-  text-shadow: 0 0 8px rgba(0, 229, 255, 0.6);
+  text-shadow: 0 0 8px rgba(237, 66, 69, 0.6); /* Updated to Red */
 }
 
 /* Custom text selection for a premium feel */
